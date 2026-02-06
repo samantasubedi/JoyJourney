@@ -16,4 +16,5 @@ model userinfo {
   id String @id @default(cuid())
   name String
   phone Int
+  country String
 }
