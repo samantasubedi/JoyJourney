@@ -17,4 +17,7 @@ model userinfo {
   name String
   phone Int
   country String
+  role String
+  email String
+  password String
 }
