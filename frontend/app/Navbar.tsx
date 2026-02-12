@@ -15,7 +15,7 @@ const Navbar = () => {
             <NavigationMenuTrigger>Home</NavigationMenuTrigger>
             <NavigationMenuTrigger>Packages</NavigationMenuTrigger>
             <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-            <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
+            <NavigationMenuTrigger>About</NavigationMenuTrigger>
             <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
           </NavigationMenuItem>
         </NavigationMenuList>
