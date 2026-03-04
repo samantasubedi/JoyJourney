@@ -8,8 +8,21 @@ import {
   useInView,
   type Variants,
 } from "framer-motion";
-
-
+import {
+  type LucideIcon,
+  Map,
+  MountainSnow,
+  Landmark,
+  PawPrint,
+  Navigation,
+  Camera,
+  Plane,
+  BedDouble,
+  ShieldCheck,
+  FileText,
+  UtensilsCrossed,
+  Users,
+} from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -37,8 +50,6 @@ const scaleIn: Variants = {
     transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" as const },
   }),
 };
-
-
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -70,11 +81,16 @@ function AnimatedSection({
   );
 }
 
-
-
-const coreServices = [
+const coreServices: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: string[];
+  color: string;
+  accent: string;
+}[] = [
   {
-    icon: "🗺️",
+    icon: Map,
     title: "Custom Tour Planning",
     description:
       "Every journey is unique. Our expert travel designers craft fully bespoke itineraries tailored to your interests, pace, and budget — from a weekend getaway to a month-long expedition.",
@@ -88,7 +104,7 @@ const coreServices = [
     accent: "border-amber-500/40",
   },
   {
-    icon: "🏔️",
+    icon: MountainSnow,
     title: "Guided Trekking",
     description:
       "Conquer iconic trails with our certified Himalayan guides. Whether it's Everest Base Camp, Annapurna Circuit, or Langtang Valley, we handle permits, safety, and logistics.",
@@ -102,7 +118,7 @@ const coreServices = [
     accent: "border-sky-500/40",
   },
   {
-    icon: "🛕",
+    icon: Landmark,
     title: "Cultural Immersion",
     description:
       "Go beyond sightseeing. Join local ceremonies, cook traditional meals with families, and explore UNESCO World Heritage Sites with historians who bring every stone to life.",
@@ -116,7 +132,7 @@ const coreServices = [
     accent: "border-violet-500/40",
   },
   {
-    icon: "🐘",
+    icon: PawPrint,
     title: "Wildlife Safaris",
     description:
       "Track Bengal tigers and one-horned rhinos through Chitwan's dense jungle. Our naturalist guides turn every safari into an unforgettable wildlife encounter.",
@@ -130,7 +146,7 @@ const coreServices = [
     accent: "border-emerald-500/40",
   },
   {
-    icon: "🚁",
+    icon: Navigation,
     title: "Helicopter Tours",
     description:
       "See the Himalayas from above. Our exclusive helicopter excursions offer breathtaking aerial views of Everest, Annapurna, and remote mountain villages inaccessible by foot.",
@@ -144,7 +160,7 @@ const coreServices = [
     accent: "border-rose-500/40",
   },
   {
-    icon: "📸",
+    icon: Camera,
     title: "Photography Expeditions",
     description:
       "Crafted for photographers — amateur or professional. We time destinations for golden hour, arrange exclusive access, and pair you with a local guide who knows every perfect angle.",
@@ -159,34 +175,34 @@ const coreServices = [
   },
 ];
 
-const supportServices = [
+const supportServices: { icon: LucideIcon; title: string; desc: string }[] = [
   {
-    icon: "✈️",
+    icon: Plane,
     title: "Airport Transfers",
     desc: "Seamless door-to-door pickups and drop-offs in private vehicles, 24 hours a day.",
   },
   {
-    icon: "🏨",
+    icon: BedDouble,
     title: "Accommodation Booking",
     desc: "Curated stays from boutique guesthouses to 5-star mountain lodges.",
   },
   {
-    icon: "🛡️",
+    icon: ShieldCheck,
     title: "Travel Insurance",
     desc: "Comprehensive policies covering trekking, medical evacuation, and trip cancellation.",
   },
   {
-    icon: "📋",
+    icon: FileText,
     title: "Visa & Permit Assistance",
     desc: "We navigate all Nepal visa formalities, trekking permits, and national park entries.",
   },
   {
-    icon: "🍽️",
+    icon: UtensilsCrossed,
     title: "Culinary Experiences",
     desc: "Food tours, cooking classes, and restaurant curation celebrating Nepali cuisine.",
   },
   {
-    icon: "🌐",
+    icon: Users,
     title: "Group & Corporate Tours",
     desc: "Team retreats, incentive travel, and large group logistics handled end-to-end.",
   },
@@ -198,8 +214,6 @@ const stats = [
   { value: "15+", label: "Years of Experience" },
   { value: "98%", label: "Satisfaction Rate" },
 ];
-
-
 
 export default function ServicesPage() {
   const heroRef = useRef(null);
@@ -264,7 +278,6 @@ export default function ServicesPage() {
         </motion.div>
       </section>
 
-    
       <AnimatedSection className="relative z-10 -mt-1 py-10 border-y border-white/5 bg-white/[0.02] backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
@@ -280,7 +293,6 @@ export default function ServicesPage() {
         </div>
       </AnimatedSection>
 
-    
       <section className="py-28 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
@@ -317,7 +329,7 @@ export default function ServicesPage() {
                   {/* glow blob */}
                   <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/[0.03] blur-2xl group-hover:bg-white/[0.06] transition-all duration-500" />
 
-                  <div className="text-4xl">{svc.icon}</div>
+                  <svc.icon className="w-9 h-9 text-white/80" />
 
                   <div>
                     <h3 className="text-xl font-bold mb-2">{svc.title}</h3>
@@ -344,7 +356,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
- 
       <section className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <AnimatedSection>
@@ -419,7 +430,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-    
       <section className="py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center mb-16">
@@ -453,7 +463,7 @@ export default function ServicesPage() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex gap-4 p-6 rounded-xl border border-white/8 bg-white/[0.03] hover:border-amber-500/30 hover:bg-white/[0.05] transition-colors duration-300 cursor-default"
                 >
-                  <span className="text-3xl shrink-0">{s.icon}</span>
+                  <s.icon className="w-7 h-7 shrink-0 text-white/70 mt-0.5" />
                   <div>
                     <h3 className="font-semibold mb-1">{s.title}</h3>
                     <p className="text-sm text-white/55 leading-relaxed">
@@ -467,7 +477,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
- 
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
