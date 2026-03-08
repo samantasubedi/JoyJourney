@@ -8,7 +8,20 @@ import {
   useInView,
   type Variants,
 } from "framer-motion";
-
+import {
+  Mountain,
+  Landmark,
+  Trees,
+  Sparkles,
+  Check,
+  ArrowRight,
+  Star,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+  Gem,
+} from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -36,7 +49,6 @@ const scaleIn: Variants = {
     transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" as const },
   }),
 };
-
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -68,31 +80,34 @@ function AnimatedSection({
   );
 }
 
-
 const highlights = [
   {
-    icon: "🏔",
+    icon: Mountain,
     title: "Himalayan Majesty",
     desc: "Stand before 8 of the world's 10 highest peaks, including the legendary Mount Everest.",
     color: "from-sky-500/20 to-blue-600/10",
+    iconColor: "text-sky-400",
   },
   {
-    icon: "🛕",
+    icon: Landmark,
     title: "Ancient Culture",
     desc: "Thousands of temples, UNESCO World Heritage Sites, and living traditions that span millennia.",
     color: "from-amber-500/20 to-orange-600/10",
+    iconColor: "text-amber-400",
   },
   {
-    icon: "🐘",
+    icon: Trees,
     title: "Wildlife Safari",
     desc: "Spot rare Bengal tigers, one-horned rhinos, and elephants in Chitwan National Park.",
     color: "from-emerald-500/20 to-green-600/10",
+    iconColor: "text-emerald-400",
   },
   {
-    icon: "☮️",
+    icon: Sparkles,
     title: "Spiritual Home",
     desc: "Walk in the footsteps of the Buddha at Lumbini — the sacred birthplace of enlightenment.",
     color: "from-violet-500/20 to-purple-600/10",
+    iconColor: "text-violet-400",
   },
 ];
 
@@ -100,7 +115,8 @@ const destinations = [
   {
     name: "Kathmandu",
     tagline: "City of Temples",
-    img: "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80",
+
     span: "md:col-span-2",
   },
   {
@@ -112,7 +128,7 @@ const destinations = [
   {
     name: "Chitwan",
     tagline: "Jungle Safari Paradise",
-    img: "https://images.unsplash.com/photo-1549887534-3dbf9e2a27fa?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
     span: "",
   },
   {
@@ -210,12 +226,10 @@ export default function Home() {
 
   return (
     <main className="bg-[#09090b] text-white overflow-x-hidden">
-
       <section
         ref={heroRef}
         className="relative h-screen min-h-175 flex items-center justify-center overflow-hidden"
       >
-  
         <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
           <img
             src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=90"
@@ -226,7 +240,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-linear-to-r from-black/30 via-transparent to-black/30" />
         </motion.div>
 
-        
         <motion.div
           animate={{ y: [0, -20, 0], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -243,12 +256,10 @@ export default function Home() {
           className="absolute bottom-1/3 right-[8%] w-80 h-80 rounded-full bg-sky-500/10 blur-3xl pointer-events-none"
         />
 
-
         <motion.div
           style={{ opacity: heroOpacity }}
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
-      
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -259,7 +270,6 @@ export default function Home() {
             Nepal&apos;s Premier Travel Experience
           </motion.div>
 
-        
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -286,7 +296,6 @@ export default function Home() {
             lakeside serenity — your extraordinary journey begins here.
           </motion.p>
 
-        
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -300,9 +309,9 @@ export default function Home() {
                 boxShadow: "0 0 40px rgba(245,158,11,0.4)",
               }}
               whileTap={{ scale: 0.97 }}
-              className="bg-linear-to-r from-amber-400 to-yellow-500 text-black font-bold px-8 py-4 rounded-full text-sm tracking-wide cursor-pointer"
+              className="bg-linear-to-r from-amber-400 to-yellow-500 text-black font-bold px-8 py-4 rounded-full text-sm tracking-wide cursor-pointer inline-flex items-center gap-2"
             >
-              Explore Destinations →
+              Explore Destinations <ArrowRight size={15} />
             </motion.a>
             <motion.a
               href="/packages"
@@ -318,7 +327,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-    
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -336,7 +344,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      
       <section className="relative z-10 -mt-1 bg-[#09090b] px-6">
         <AnimatedSection className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/10">
           {stats.map((s, i) => (
@@ -357,7 +364,6 @@ export default function Home() {
         </AnimatedSection>
       </section>
 
-  
       <section className="py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center mb-16">
@@ -392,7 +398,9 @@ export default function Home() {
                 className={`relative bg-linear-to-br ${h.color} border border-white/10 rounded-2xl p-7 overflow-hidden group cursor-default`}
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/3 rounded-2xl" />
-                <div className="text-4xl mb-5">{h.icon}</div>
+                <div className={`mb-5 ${h.iconColor}`}>
+                  <h.icon size={40} strokeWidth={1.5} />
+                </div>
                 <h3 className="text-lg font-bold text-white mb-2">{h.title}</h3>
                 <p className="text-white/55 text-sm leading-relaxed">
                   {h.desc}
@@ -403,7 +411,6 @@ export default function Home() {
         </div>
       </section>
 
-    
       <section className="py-20 px-6 bg-[#0b0b0e]">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center mb-14">
@@ -441,8 +448,8 @@ export default function Home() {
                     {d.name}
                   </h3>
                 </div>
-                <div className="absolute top-5 right-5 w-9 h-9 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white text-sm border border-white/30 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  →
+                <div className="absolute top-5 right-5 w-9 h-9 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <ArrowRight size={15} />
                 </div>
               </motion.div>
             ))}
@@ -454,16 +461,14 @@ export default function Home() {
               href="/destinations"
               className="inline-flex items-center gap-2 text-white/60 hover:text-amber-400 transition-colors text-sm font-medium tracking-wide"
             >
-              View all destinations <span className="text-base">→</span>
+              View all destinations <ArrowRight size={15} />
             </motion.a>
           </AnimatedSection>
         </div>
       </section>
 
-    
       <section className="py-28 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-      
           <AnimatedSection>
             <motion.div
               variants={scaleIn}
@@ -491,7 +496,6 @@ export default function Home() {
             </motion.div>
           </AnimatedSection>
 
-         
           <AnimatedSection className="space-y-6">
             <motion.div variants={fadeUp}>
               <SectionLabel>Our Promise</SectionLabel>
@@ -528,8 +532,8 @@ export default function Home() {
                   custom={i + 3}
                   className="flex items-start gap-3 text-white/70 text-sm"
                 >
-                  <span className="mt-1 shrink-0 w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-400 text-xs">
-                    ✓
+                  <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-400">
+                    <Check size={11} strokeWidth={2.5} />
                   </span>
                   {item}
                 </motion.li>
@@ -544,14 +548,14 @@ export default function Home() {
               className="inline-flex items-center gap-2 text-amber-400 font-semibold text-sm mt-2 group"
             >
               Learn about us{" "}
-              <span className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
+              <ArrowRight
+                size={14}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </motion.a>
           </AnimatedSection>
         </div>
       </section>
-
 
       <section className="py-24 px-6 bg-[#0b0b0e]">
         <div className="max-w-6xl mx-auto">
@@ -612,7 +616,7 @@ export default function Home() {
                         key={f}
                         className="flex items-center gap-2.5 text-white/60 text-sm"
                       >
-                        <span className="text-amber-400 text-xs">✦</span>
+                        <Gem size={12} className="text-amber-400 shrink-0" />
                         {f}
                       </li>
                     ))}
@@ -660,9 +664,14 @@ export default function Home() {
                 whileHover={{ y: -4 }}
                 className="bg-[#0f0f12] border border-white/8 rounded-2xl p-8 flex flex-col gap-6"
               >
-                <div className="flex gap-1 text-amber-400 text-sm">
-                  {"★★★★★".split("").map((s, j) => (
-                    <span key={j}>{s}</span>
+                <div className="flex gap-0.5 text-amber-400">
+                  {Array.from({ length: 5 }).map((_, j) => (
+                    <Star
+                      key={j}
+                      size={14}
+                      fill="currentColor"
+                      strokeWidth={0}
+                    />
                   ))}
                 </div>
                 <blockquote className="text-white/70 text-sm leading-loose flex-1">
@@ -716,9 +725,9 @@ export default function Home() {
                     boxShadow: "0 0 40px rgba(245,158,11,0.4)",
                   }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-block bg-linear-to-r from-amber-400 to-yellow-500 text-black font-bold px-8 py-4 rounded-full text-sm tracking-wide cursor-pointer text-center"
+                  className="inline-flex items-center gap-2 bg-linear-to-r from-amber-400 to-yellow-500 text-black font-bold px-8 py-4 rounded-full text-sm tracking-wide cursor-pointer text-center"
                 >
-                  Book Your Adventure →
+                  Book Your Adventure <ArrowRight size={15} />
                 </motion.a>
                 <motion.a
                   href="/services"
@@ -733,7 +742,6 @@ export default function Home() {
         </AnimatedSection>
       </section>
 
-
       <footer className="bg-[#050507] border-t border-white/8 px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-10 mb-14">
@@ -747,14 +755,20 @@ export default function Home() {
                 wildlife.
               </p>
               <div className="flex gap-3 mt-6">
-                {["𝕏", "in", "📷", "▶"].map((icon, i) => (
+                {[
+                  { icon: Twitter, label: "Twitter" },
+                  { icon: Linkedin, label: "LinkedIn" },
+                  { icon: Instagram, label: "Instagram" },
+                  { icon: Youtube, label: "YouTube" },
+                ].map(({ icon: Icon, label }) => (
                   <motion.a
-                    key={i}
+                    key={label}
                     href="#"
+                    aria-label={label}
                     whileHover={{ scale: 1.15 }}
-                    className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 text-xs hover:border-amber-400/50 hover:text-amber-400 transition-colors"
+                    className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:border-amber-400/50 hover:text-amber-400 transition-colors"
                   >
-                    {icon}
+                    <Icon size={15} />
                   </motion.a>
                 ))}
               </div>
