@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const Navbar = dynamic(() => import("./Navbar"), { ssr: false });
+const Navbar = dynamic(() => import("@/app/Navbar"), { ssr: false });
 
 export default function NavbarClient() {
   return <Navbar />;
