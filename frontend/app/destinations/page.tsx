@@ -9,6 +9,17 @@ import {
   type Variants,
   AnimatePresence,
 } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowUpRight,
+  CalendarDays,
+  Clock3,
+  Globe2,
+  Landmark,
+  Mountain,
+  PawPrint,
+  Sparkles,
+} from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -247,12 +258,12 @@ const categories: Category[] = [
   "Spiritual",
 ];
 
-const categoryIcons: Record<Category, string> = {
-  All: "🗺",
-  Mountains: "🏔",
-  Culture: "🛕",
-  Wildlife: "🐘",
-  Spiritual: "☮️",
+const categoryIcons: Record<Category, LucideIcon> = {
+  All: Globe2,
+  Mountains: Mountain,
+  Culture: Landmark,
+  Wildlife: PawPrint,
+  Spiritual: Sparkles,
 };
 
 function DestinationCard({
@@ -263,6 +274,7 @@ function DestinationCard({
   index: number;
 }) {
   const [hovered, setHovered] = useState(false);
+  const CategoryIcon = categoryIcons[dest.category];
 
   return (
     <motion.div
@@ -284,7 +296,7 @@ function DestinationCard({
         <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
         <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
-          <span className="text-xs">{categoryIcons[dest.category]}</span>
+          <CategoryIcon className="w-4 h-4 text-amber-400" strokeWidth={1.8} />
           <span className="text-xs font-semibold text-white/80">
             {dest.category}
           </span>
@@ -327,18 +339,18 @@ function DestinationCard({
 
         <div className="flex items-center justify-between pt-3 border-t border-white/5">
           <div className="flex items-center gap-1.5 text-xs text-white/50">
-            <span>🕐</span>
+            <Clock3 className="w-4 h-4" strokeWidth={1.75} />
             <span>{dest.duration}</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-white/50">
-            <span>📅</span>
+            <CalendarDays className="w-4 h-4" strokeWidth={1.75} />
             <span>{dest.bestTime}</span>
           </div>
           <motion.button
             whileHover={{ x: 3 }}
             className="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1"
           >
-            Explore <span>→</span>
+            Explore <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.25} />
           </motion.button>
         </div>
       </div>
@@ -348,6 +360,7 @@ function DestinationCard({
 
 function FeaturedCard({ dest, index }: { dest: Destination; index: number }) {
   const [hovered, setHovered] = useState(false);
+  const CategoryIcon = categoryIcons[dest.category];
 
   return (
     <motion.div
@@ -369,7 +382,7 @@ function FeaturedCard({ dest, index }: { dest: Destination; index: number }) {
 
       <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
         <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
-          <span className="text-xs">{categoryIcons[dest.category]}</span>
+          <CategoryIcon className="w-4 h-4 text-amber-400" strokeWidth={1.8} />
           <span className="text-xs font-semibold text-white/80">
             {dest.category}
           </span>
@@ -419,18 +432,18 @@ function FeaturedCard({ dest, index }: { dest: Destination; index: number }) {
 
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-1.5 text-xs text-white/50">
-            <span>🕐</span>
+            <Clock3 className="w-4 h-4" strokeWidth={1.75} />
             <span>{dest.duration}</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-white/50">
-            <span>📅</span>
+            <CalendarDays className="w-4 h-4" strokeWidth={1.75} />
             <span>{dest.bestTime}</span>
           </div>
           <motion.button
             whileHover={{ x: 4 }}
             className="ml-auto text-sm font-semibold text-amber-400 flex items-center gap-1.5"
           >
-            Explore <span>→</span>
+            Explore <ArrowUpRight className="w-4 h-4" strokeWidth={2.25} />
           </motion.button>
         </div>
       </div>
@@ -558,20 +571,23 @@ export default function Destinations() {
               </h2>
 
               <div className="flex flex-wrap gap-2">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActive(cat)}
-                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${
-                      active === cat
-                        ? "bg-amber-500 border-amber-500 text-black"
-                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white"
-                    }`}
-                  >
-                    <span>{categoryIcons[cat]}</span>
-                    {cat}
-                  </button>
-                ))}
+                {categories.map((cat) => {
+                  const Icon = categoryIcons[cat];
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActive(cat)}
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${
+                        active === cat
+                          ? "bg-amber-500 border-amber-500 text-black"
+                          : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" strokeWidth={1.8} />
+                      {cat}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
