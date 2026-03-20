@@ -8,6 +8,8 @@ import {
   useInView,
   type Variants,
 } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import { Handshake, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -73,34 +75,47 @@ const stats = [
   { value: "98%", label: "Satisfaction Rate" },
 ];
 
-const values = [
+interface CoreValue {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  color: string;
+  border: string;
+  iconColor: string;
+}
+
+const values: CoreValue[] = [
   {
-    icon: "🌿",
+    icon: Leaf,
     title: "Sustainable Travel",
     desc: "We are committed to protecting Nepal's fragile ecosystems. Every trip is designed with minimal environmental impact in mind.",
     color: "from-emerald-500/20 to-green-600/10",
     border: "border-emerald-500/20",
+    iconColor: "text-emerald-300",
   },
   {
-    icon: "🤝",
+    icon: Handshake,
     title: "Community First",
     desc: "We work hand-in-hand with local guides, lodges, and communities so tourism directly uplifts the people of Nepal.",
     color: "from-amber-500/20 to-orange-600/10",
     border: "border-amber-500/20",
+    iconColor: "text-amber-300",
   },
   {
-    icon: "🛡️",
+    icon: ShieldCheck,
     title: "Safety Above All",
     desc: "From certified guides to emergency protocols, your safety is our highest priority on every route.",
     color: "from-sky-500/20 to-blue-600/10",
     border: "border-sky-500/20",
+    iconColor: "text-sky-300",
   },
   {
-    icon: "✨",
+    icon: Sparkles,
     title: "Authentic Experiences",
     desc: "No cookie-cutter tours. We craft journeys that immerse you in real culture, real landscapes, and real stories.",
     color: "from-violet-500/20 to-purple-600/10",
     border: "border-violet-500/20",
+    iconColor: "text-violet-300",
   },
 ];
 
@@ -321,22 +336,28 @@ export default function About() {
           </AnimatedSection>
 
           <AnimatedSection className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                variants={fadeUp}
-                custom={i}
-                className={`relative group bg-linear-to-br ${v.color} border ${v.border} rounded-2xl p-7 hover:scale-[1.02] transition-transform duration-300`}
-              >
-                <span className="text-4xl mb-5 block">{v.icon}</span>
-                <h3 className="text-white font-semibold text-lg mb-3">
-                  {v.title}
-                </h3>
-                <p className="text-white/55 text-sm leading-relaxed">
-                  {v.desc}
-                </p>
-              </motion.div>
-            ))}
+            {values.map((v, i) => {
+              const Icon = v.icon;
+              return (
+                <motion.div
+                  key={v.title}
+                  variants={fadeUp}
+                  custom={i}
+                  className={`relative group bg-linear-to-br ${v.color} border ${v.border} rounded-2xl p-7 hover:scale-[1.02] transition-transform duration-300`}
+                >
+                  <Icon
+                    className={`w-10 h-10 mb-5 ${v.iconColor}`}
+                    strokeWidth={1.8}
+                  />
+                  <h3 className="text-white font-semibold text-lg mb-3">
+                    {v.title}
+                  </h3>
+                  <p className="text-white/55 text-sm leading-relaxed">
+                    {v.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </AnimatedSection>
         </div>
       </section>
